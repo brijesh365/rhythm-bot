@@ -1,0 +1,6 @@
+/Lib/
+/Scripts/
+database.sqlite3
+.idea/
+*.pyx
+*.pyc
