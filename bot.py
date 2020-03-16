@@ -1,10 +1,13 @@
 from discord.ext import commands
 
+import caching
 import messages
 import settings
 from songs import lyrics as lyrics_search
 from songs import soundcloud as sc
 from songs import youtube
+
+cache = caching.Cache()
 
 bot = commands.Bot(command_prefix=settings.COMMAND_PREFIX)
 
@@ -21,7 +24,10 @@ async def on_message(message):
     elif message.content.lower() == 'ping':
         await message.channel.send(messages.HELLO_RESPONSE)
     elif message.content.lower() == 'cancel':
-        await message.channel.send(messages.HELLO_RESPONSE)
+        cache.delete(message.author)
+        await message.channel.send(messages.DONE)
+    elif message.content.lower().isdigit() and int(message.content.lower()) < 10:
+        await message
     # else:
     #     await message.channel.send(HELP)
 

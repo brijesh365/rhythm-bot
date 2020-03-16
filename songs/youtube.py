@@ -18,7 +18,7 @@ def search(query, max_result=settings.RESULTS_COUNT):
 def fetch_video_details(query, video_ids):
     video_details = client.videos().list(id=video_ids, part="snippet, contentDetails").execute()
     results = video_details.get("items", [])
-    videos = [f'**{query.title()}**\n\n']
+    videos = [f'{query.title()}\n\n']
     counter = 1
     for result in results:
         title = html.unescape(result["snippet"]["title"])

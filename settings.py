@@ -4,4 +4,6 @@ RESULTS_COUNT = 10
 
 DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN')
 DEVELOPER_KEY = os.environ.get('DEVELOPER_KEY')
+MUSIXMATCH_KEY = os.environ.get('MUSIXMATCH_KEY')
+
 COMMAND_PREFIX = '!'
