@@ -63,8 +63,12 @@ async def lyrics(ctx, *, keyword):
 
 @bot.command(pass_context=True)
 async def play(ctx, *, keyword):
-    output = youtube.search(keyword)
-    await ctx.send(f'{messages.YOUTUBE_WATCH_URL}?v={output[0]["id"]["videoId"]}' if output else messages.ERROR_404)
+    if keyword.startswith('https://www.youtube.com') != -1 or keyword.startswith('https://www.soundcloud.com') != -1:
+        output = keyword
+    else:
+        response = youtube.search(keyword)
+        output = f'{messages.YOUTUBE_WATCH_URL}?v={response[0]["id"]["videoId"]}' if response else messages.ERROR_404
+    await ctx.send(output)
 
 
 bot.run(settings.DISCORD_TOKEN)
